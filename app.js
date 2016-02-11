@@ -30,12 +30,18 @@ myApp.controller('currentLocationController', function($scope){
 	$scope.resetLocation = function(){
 		$scope.currentLocationForm.$setPristine();
 		document.getElementById("userLocation").reset();
-	}
-
+	};
 });
 
 myApp.controller('destinationController', function($scope){
-	$scope.destinations = [];
+
+	$scope.destinations = [{destinationPlace: "Munsters",
+			destinationStreet: "1313 Mockingbird Lane",
+			destinationCity: "Spooky",
+			destinationState: "Canada"}];
+
+			console.log($scope.destinations);
+
 	$scope.createDestination = function(){
 		var destination = {
 			destinationPlace: $scope.destinationPlace,
@@ -44,15 +50,12 @@ myApp.controller('destinationController', function($scope){
 			destinationState: $scope.destinationState,
 		};
 		$scope.destinations.push(destination);
-		console.log($scope.destinations);
 	};
 
 	$scope.resetForm = function(){
 		$scope.destinationsForm.$setPristine();
 		document.getElementById("userDestination").reset();
 	};
-
-
 });
 
 
