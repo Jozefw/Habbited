@@ -9,6 +9,10 @@ myApp.controller('userController', function($scope){
 		};
 		$scope.users.push(user);
 	};
+	$scope.resetUser = function(){
+		$scope.userForm.$setPristine();
+		document.getElementById("userInfo").reset();
+	};
 });
 
 myApp.controller('currentLocationController', function($scope){
@@ -23,6 +27,11 @@ myApp.controller('currentLocationController', function($scope){
 		$scope.locations.push(location);
 		console.log($scope.locations);
 	};
+	$scope.resetLocation = function(){
+		$scope.currentLocationForm.$setPristine();
+		document.getElementById("userLocation").reset();
+	}
+
 });
 
 myApp.controller('destinationController', function($scope){
@@ -38,4 +47,13 @@ myApp.controller('destinationController', function($scope){
 		console.log($scope.destinations);
 	};
 
+	$scope.resetForm = function(){
+		$scope.destinationsForm.$setPristine();
+		document.getElementById("userDestination").reset();
+	};
+
+
 });
+
+
+
