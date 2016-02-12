@@ -1,4 +1,23 @@
-var myApp = angular.module('pavlove', []);
+var myApp = angular.module('pavlove', ['ngRoute']);
+
+myApp.config(['$routeProvider', function($routeProvider){
+	$routeProvider
+		.when('/', {
+			templateUrl: 'user.html',
+			controller: 'userController'
+		})
+		.when('/location',{
+			templateUrl: 'location.html',
+			controller: 'currentLocationController'
+		})
+		.when('/destination',{
+			templateUrl: 'destination.html',
+			controller: 'destinationController'
+		})
+		.otherwise({
+			redirectTo: '/'
+		});
+}]);
 
 myApp.controller('userController', function($scope){
 	$scope.users =[];
