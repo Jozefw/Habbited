@@ -32,6 +32,20 @@ myApp.controller('userController', function($scope){
 		$scope.userForm.$setPristine();
 		document.getElementById("userInfo").reset();
 	};
+
+
+	$('a').click(function(){
+		$('.navbar li').removeClass('active');
+		console.log(this);
+		($(this).closest('li')).addClass('active');
+	});
+
+
+
+	// $('a').click(function(){
+	// 	$('.navbar li').removeClass('active');
+	// 	($(this).closest('li')).addClass('active');
+	// });
 });
 
 myApp.controller('currentLocationController', function($scope){
