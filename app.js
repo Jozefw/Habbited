@@ -17,7 +17,7 @@ myApp.config(['$routeProvider', function($routeProvider, $location){
 	})
 	.when('/showDestinations',{
 		templateUrl: 'showDestinations.html',
-		controller: 'destinationController'
+		controller: 'showDestinationsController'
 	})
 	.otherwise({
 		redirectTo: '/'
@@ -30,26 +30,27 @@ myApp.config(['$routeProvider', function($routeProvider, $location){
 }]);
 
 myApp.controller('userController',['$scope','$location', 'myService',function($scope,$location,myService){
-	$scope.serviceUsers =[];
 
-	$scope.createServiceUser();
-
-		$scope.serviceUsers.push(user);
-		console.log($scope.serviceUsers);
+	$scope.createUser = function(){
+		var user ={
+			firstName: $scope.userFirstName,
+			lastName: $scope.userLastName
+		};
+		myService.serviceUsers.push(user);
 
 		$('.active').removeClass('active').next('li').addClass('active');
 
 		$location.path('/location');
-
 	};
+
 	$scope.resetUser = function(){
 		$scope.userForm.$setPristine();
 		document.getElementById("userInfo").reset();
 	};
 }]);
 
-myApp.controller('currentLocationController', ['$scope','$location',function($scope, $location){
-	$scope.locations =[];
+myApp.controller('currentLocationController', ['$scope','$location','myService',function($scope, $location, myService){
+
 	$scope.createLocation = function(){
 		var location = {
 			locationPlace: $scope.locationPlace,
@@ -57,9 +58,11 @@ myApp.controller('currentLocationController', ['$scope','$location',function($sc
 			locationCity: $scope.locationCity,
 			locationState: $scope.locationState,
 		};
-		$scope.locations.push(location);
+		myService.locations.push(location);
+		console.log(myService.locations);
 
 		$('.active').removeClass('active').next('li').addClass('active');
+
 		$location.path('/destination');
 	};
 
@@ -69,12 +72,7 @@ myApp.controller('currentLocationController', ['$scope','$location',function($sc
 	};
 }]);
 
-myApp.controller('destinationController',['$scope','$location', function($scope, $location){
-
-	$scope.destinations = [{destinationPlace: "Munsters",
-	destinationStreet: "1313 Mockingbird Lane",
-	destinationCity: "Spooky",
-	destinationState: "Canada"}];
+myApp.controller('destinationController',['$scope','$location', 'myService',function($scope, $location, myService){
 
 	$scope.createDestination = function(){
 		var destination = {
@@ -83,22 +81,25 @@ myApp.controller('destinationController',['$scope','$location', function($scope,
 			destinationCity: $scope.destinationCity,
 			destinationState: $scope.destinationState,
 		};
-		$scope.destinations.push(destination);
-		console.log($scope.destinations)
+
+		myService.destinations.push(destination);
+		console.log(myService.destinations);
 
 		$('.active').removeClass('active').next('li').addClass('active');
 
-		//$location.path('/showDestinations');
+		$location.path('/showDestinations');
 	};
+
 	$scope.resetForm = function(){
 		$scope.destinationsForm.$setPristine();
 		document.getElementById("userDestination").reset();
 	};
 }]);
 
-myApp.controller('showDestinationsController',['$scope', '$location', function($scope, $location){
+myApp.controller('showDestinationsController',['$scope', '$location', 'myService',function($scope, $location, myService){
+	$scope.destiny = myService.destinations;
 
-
+console.log($scope.destiny.destinationStreet);
 }]);
 
 
