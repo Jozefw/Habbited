@@ -1,5 +1,15 @@
-main{
-	width: 75%;
-	margin: 20px auto;
+main {
+    width: 75%;
+    margin: 20px auto;
+}
 
+ui-gmap-google-map#googleMapContainer {
+    width: 400px;
+    height: 400px;
+}
+
+
+#maps{
+	width: 500px;
+	height: 400px;
 }

@@ -8,12 +8,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="bootstrap-3.3.6-dist/css/bootstrap.css">
 	<link rel="stylesheet" href="style.css">
+
+	<script src="./bower_components/lodash/lodash.js"></script>
 	<script src="angular.js"></script>
 	<script src="angular-route.js"></script>
+	<script src="./bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
 	<script src="app.js"></script>
 	<script src="myService.js"></script>
 	<script src="jquery-1.12.0.js"></script>
 	<script src="bootstrap-3.3.6-dist/js/bootstrap.js"></script>
+	<script src="./bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
+
+
 </head>
 <body ng-app="pavlove">
 	<main>
@@ -25,6 +31,7 @@
 				<li><a href="#/location">Current Location</a></li>
 				<li><a href="#/destination">Chosen Destinations</a></li>
 				<li><a href="#/showDestinations"> History</a></li>
+				<li><a href="#/getGeoLocation">Find GeoLocation</a></li>
 				</ul>
 			</div>
 			</nav>
