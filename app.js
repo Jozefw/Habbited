@@ -1,12 +1,14 @@
-var myApp = angular.module('pavlove', ['ngRoute', 'uiGmapgoogle-maps']);
+var myApp = angular.module('pavlove', ['ngRoute']);
 
-myApp.config(function(uiGmapGoogleMapApiProvider) {
-    uiGmapGoogleMapApiProvider.configure({
-        key: 'AIzaSyCqcFBWN6sYDEuu_cigq3zBU0cBIOA7Xrw',
-        v: '3.23',
-        libraries: 'weather,geometry,visualization'
-    });
-});
+// myApp.config(function(uiGmapGoogleMapApiProvider) {
+//     uiGmapGoogleMapApiProvider.configure({
+//         key: 'AIzaSyCqcFBWN6sYDEuu_cigq3zBU0cBIOA7Xrw',
+//         v: '3.23',
+//         libraries: 'weather,geometry,visualization'
+//     });
+// });
+
+// "https://maps.googleapis.com/maps/api/js?key=AIzaSyCqcFBWN6sYDEuu_cigq3zBU0cBIOA7Xrw&callback=initMap"
 
 myApp.config(['$routeProvider', function($routeProvider, $location) {
 
@@ -71,10 +73,7 @@ myApp.controller('currentLocationController', ['$scope', '$location', 'myService
             locationState: $scope.locationState,
         };
         myService.locations.push(location);
-        console.log(myService.locations);
-
         $('.active').removeClass('active').next('li').addClass('active');
-
         $location.path('/destination');
     };
 
@@ -114,22 +113,10 @@ myApp.controller('showDestinationsController', ['$scope', '$location', 'myServic
     console.log($scope.destiny.destinationStreet);
 }]);
 
-myApp.controller('getMapController', ['$scope', 'uiGmapGoogleMapApi', function($scope, uiGmapGoogleMapApi) {
-    $scope.map = {
-        center: {
-            latitude: 45,
-            longitude: -73
-        },
-        zoom: 8
-    };
-    uiGmapGoogleMapApi.then(function(maps) {
-        console.log(maps);
-
-    });
+myApp.controller('getMapController', ['$scope', function($scope) {
 
     $scope.getMapLocation = function() {
         $scope.mapInfo = document.getElementById('CoordinatesPlace');
-        console.log($scope.mapInfo);
 
         if (!navigator.geolocation) {
             $scope.mapInfo.innerHTML = "<p> Not Supported</p>";
