@@ -10,6 +10,8 @@ var myApp = angular.module('pavlove', ['ngRoute']);
 
 // "https://maps.googleapis.com/maps/api/js?key=AIzaSyCqcFBWN6sYDEuu_cigq3zBU0cBIOA7Xrw&callback=initMap"
 
+
+
 myApp.config(['$routeProvider', function($routeProvider, $location) {
 
     $routeProvider
@@ -122,18 +124,34 @@ myApp.controller('getMapController', ['$scope', function($scope) {
             $scope.mapInfo.innerHTML = "<p> Not Supported</p>";
             return;
         }
+
         $scope.success = function(position) {
             $scope.latitude = position.coords.latitude;
-
             $scope.longitude = position.coords.longitude;
-            console.log($scope.latitude, $scope.longitude);
 
             $scope.mapInfo.innerHTML = "The coordinates are: <br/>Longitude  " + $scope.longitude + "<br/>Latitude  " + " " + $scope.latitude + "<br/>";
             $scope.img = new Image();
-            $scope.img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + $scope.latitude + "," + $scope.longitude + "&zoom=13&size=300x300&sensor=false";
-
+            $scope.img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + $scope.latitude + "," + $scope.longitude + "&zoom=19&size=300x300&sensor=false";
             $scope.mapInfo.appendChild($scope.img);
+// the google maps version
+            $scope.coords = new google.maps.LatLng($scope.latitude, $scope.longitude);
+            console.log($scope.coords);
 
+            $scope.options = {
+                zoom: 18,
+                center: $scope.coords,
+                mapTypeControl: false,
+                navigationControlOptions: {
+                    style: google.maps.NavigationControlStyle.SMALL
+                },
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            $scope.map = new google.maps.Map(document.getElementById("maps"), $scope.options);
+            $scope.marker = new google.maps.Marker({
+                position: $scope.coords,
+                map: $scope.map,
+                title: "Marker Map"
+            });
         };
 
         $scope.error = function() {
