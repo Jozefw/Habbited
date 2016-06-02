@@ -10,8 +10,6 @@ var myApp = angular.module('pavlove', ['ngRoute']);
 
 // "https://maps.googleapis.com/maps/api/js?key=AIzaSyCqcFBWN6sYDEuu_cigq3zBU0cBIOA7Xrw&callback=initMap"
 
-
-
 myApp.config(['$routeProvider', function($routeProvider, $location) {
 
     $routeProvider
